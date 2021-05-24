@@ -132,15 +132,27 @@ func (er *EventRouter) Run(stopCh <-chan struct{}) {
 
 // addEvent is called when an event is created, or during the initial list
 func (er *EventRouter) addEvent(obj interface{}) {
-	e := obj.(*v1.Event)
+	e, ok := obj.(*v1.Event)
+	if !ok {
+		glog.Error("Given object '%v' not v1.Event", obj)
+		return
+	}
 	prometheusEvent(e)
 	er.eSink.UpdateEvents(e, nil)
 }
 
 // updateEvent is called any time there is an update to an existing event
 func (er *EventRouter) updateEvent(objOld interface{}, objNew interface{}) {
-	eOld := objOld.(*v1.Event)
-	eNew := objNew.(*v1.Event)
+	eOld, ok := objOld.(*v1.Event)
+	if !ok {
+		glog.Error("Given object '%v' not v1.Event", objOld)
+		return
+	}
+	eNew, ok := objNew.(*v1.Event)
+	if !ok {
+		glog.Error("Given object '%v' not v1.Event", objNew)
+		return
+	}
 	prometheusEvent(eNew)
 	er.eSink.UpdateEvents(eNew, eOld)
 }
@@ -198,7 +210,11 @@ func prometheusEvent(event *v1.Event) {
 
 // deleteEvent should only occur when the system garbage collects events via TTL expiration
 func (er *EventRouter) deleteEvent(obj interface{}) {
-	e := obj.(*v1.Event)
+	e, ok := obj.(*v1.Event)
+	if !ok {
+		glog.Error("Given object '%v' not v1.Event", obj)
+		return
+	}
 	// NOTE: This should *only* happen on TTL expiration there
 	// is no reason to push this to a sink
 	glog.V(5).Infof("Event Deleted from the system:\n%v", e)
