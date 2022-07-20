@@ -18,7 +18,7 @@ BUILDMNT = /src/
 REGISTRY ?= gcr.io/heptio-images
 VERSION ?= v0.3
 IMAGE = $(REGISTRY)/$(BIN)
-BUILD_IMAGE ?= golang:1.12.9
+BUILD_IMAGE ?= golang:1.18
 DOCKER ?= docker
 DIR := ${CURDIR}
 
