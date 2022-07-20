@@ -1,0 +1,32 @@
+# Default values for eventrouter.
+
+image:
+  repository: ""
+  tag: ""
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+resources: {}
+
+rbac:
+  create: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+sink: stdout
