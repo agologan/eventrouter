@@ -21,7 +21,8 @@ import (
 
 	"github.com/golang/glog"
 	"github.com/spf13/viper"
-	v1 "k8s.io/api/core/v1"
+
+	"k8s.io/api/core/v1"
 )
 
 // EventSinkInterface is the interface used to shunt events
@@ -184,21 +185,6 @@ func ManufactureSink() (e EventSinkInterface) {
 			panic(err.Error())
 		}
 		return influx
-	case "rockset":
-		rocksetAPIKey := viper.GetString("rocksetAPIKey")
-		if rocksetAPIKey == "" {
-			panic("Rockset sink specified but rocksetAPIKey not specified")
-		}
-
-		rocksetCollectionName := viper.GetString("rocksetCollectionName")
-		if rocksetCollectionName == "" {
-			panic("Rockset sink specified but rocksetCollectionName not specified")
-		}
-		rocksetWorkspaceName := viper.GetString("rocksetWorkspaceName")
-		if rocksetCollectionName == "" {
-			panic("Rockset sink specified but rocksetWorkspaceName not specified")
-		}
-		e = NewRocksetSink(rocksetAPIKey, rocksetCollectionName, rocksetWorkspaceName)
 	case "eventhub":
 		connString := viper.GetString("eventHubConnectionString")
 		if connString == "" {

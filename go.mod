@@ -15,7 +15,6 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/nytlabs/gojsonexplode v0.0.0-20160201065013-0f3fe6bb573f
 	github.com/prometheus/client_golang v1.1.0
-	github.com/rockset/rockset-go-client v0.6.0
 	github.com/sethgrid/pester v0.0.0-20190127155807-68a33a018ad0
 	github.com/spf13/viper v1.4.0
 	gopkg.in/jcmturner/goidentity.v3 v3.0.0 // indirect
