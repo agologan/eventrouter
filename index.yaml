@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  eventrouter:
+  - apiVersion: v2
+    appVersion: "0.3"
+    created: "2022-07-20T15:49:58.495040824Z"
+    description: Chart for eventrouter
+    digest: b8c7829d2dc253e085abfd10958e946089af078c4fb17e46193be6b4d646f728
+    name: eventrouter
+    type: application
+    urls:
+    - https://github.com/agologan/eventrouter/releases/download/0.1.0/eventrouter-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-07-20T15:49:58.495050224Z"
