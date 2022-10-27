@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.9
-MAINTAINER Timothy St. Clair "tstclair@heptio.com"  
+FROM alpine:3.16
+LABEL org.opencontainers.image.source="https://github.com/agologan/eventrouter"
 
 WORKDIR /app
 RUN apk update --no-cache && apk add ca-certificates

@@ -13,12 +13,12 @@
 # limitations under the License.
 
 TARGET = eventrouter
-GOTARGET = github.com/heptiolabs/$(TARGET)
+GOTARGET = github.com/agologan/$(TARGET)
 BUILDMNT = /src/
-REGISTRY ?= gcr.io/heptio-images
-VERSION ?= v0.3
+REGISTRY ?= ghcr.io/agologan
+VERSION ?= v0.4
 IMAGE = $(REGISTRY)/$(BIN)
-BUILD_IMAGE ?= golang:1.18
+BUILD_IMAGE ?= golang:1.19
 DOCKER ?= docker
 DIR := ${CURDIR}
 
@@ -33,9 +33,15 @@ VET = go vet $(VET_PKGS)
 
 DOCKER_BUILD ?= $(DOCKER) run --rm -v $(DIR):$(BUILDMNT) -w $(BUILDMNT) $(BUILD_IMAGE) /bin/sh -c
 
-all: container
+all: local-build
 
-container:
+service:
+
+local-build:
+	CGO_ENABLED=0 go build
+	$(DOCKER) build -t $(REGISTRY)/$(TARGET):latest -t $(REGISTRY)/$(TARGET):$(VERSION) .
+
+docker-build:
 	$(DOCKER_BUILD) 'CGO_ENABLED=0 go build'
 	$(DOCKER) build -t $(REGISTRY)/$(TARGET):latest -t $(REGISTRY)/$(TARGET):$(VERSION) .
 
