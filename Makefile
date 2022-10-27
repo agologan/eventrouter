@@ -47,10 +47,7 @@ docker-build:
 
 push:
 	$(DOCKER) push $(REGISTRY)/$(TARGET):latest
-	if git describe --tags --exact-match >/dev/null 2>&1; \
-	then \
-		$(DOCKER) push $(REGISTRY)/$(TARGET):$(VERSION); \
-	fi
+	$(DOCKER) push $(REGISTRY)/$(TARGET):$(VERSION)
 
 test:
 	$(DOCKER_BUILD) '$(TEST)'
