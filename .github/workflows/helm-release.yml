@@ -44,7 +44,7 @@ jobs:
               --owner "$owner" \
               --git-repo "$repo" \
               --token "${{ secrets.GITHUB_TOKEN }}" \
-              --release-name-template "{{ .Version }}"
+              --release-name-template "{{ .Version }}" \
               --skip-existing
           # update index and push to github pages
           git config user.email "$owner@users.noreply.github.com"
