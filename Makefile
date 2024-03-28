@@ -18,7 +18,7 @@ BUILDMNT = /src/
 REGISTRY ?= ghcr.io/agologan
 VERSION ?= 0.4
 IMAGE = $(REGISTRY)/$(BIN)
-BUILD_IMAGE ?= golang:1.19
+BUILD_IMAGE ?= golang:1.21
 DOCKER ?= docker
 DIR := ${CURDIR}
 
